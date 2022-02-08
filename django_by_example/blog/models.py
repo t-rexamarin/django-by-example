@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from userapp.models import User
 from taggit.managers import TaggableManager
 
 
@@ -26,6 +27,7 @@ class Post(models.Model):
                                on_delete=models.CASCADE,
                                related_name='blog_posts')
     body = models.TextField()
+    # image = models.ImageField(upload_to='post_images', blank=True)
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

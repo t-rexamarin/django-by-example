@@ -1,0 +1,306 @@
+{% extends "blog/base2.html" %}
+{% load blog_tags %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<!-- Jumbotron -->
+<div class="p-5 text-center bg-light" style="margin-top: 58px">
+    <h1 class="my-1 h4">{{ post.title }}</h1>
+</div>
+<!-- Jumbotron -->
+
+<!-- Main layout -->
+<main class="my-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <!-- Post Data -->
+                <section id="post" class="border-bottom mb-4">
+                    <img
+                            src="{% static 'img/f.jpg' %}"
+                            alt="Feature image"
+                            class="img-fluid shadow-2-strong rounded mb-4"
+                    >
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-6 text-center text-lg-start mb-3 m-lg-0">
+                            <img
+                                    src="{% static 'img/a.jpg' %}"
+                                    alt="Avatar"
+                                    class="rounded shadow-1-strong mr-2"
+                                    height="35"
+                            >
+
+                            {% if post.published_date %}
+                                <span>Published <u>{{ post.published_date|date:"SHORT_DATE_FORMAT" }}</u> by</span>
+                                <a href="#" class="text-dark">Anna Maria Doe</a>
+                            {% endif %}
+
+                        </div>
+                        <div class="col-md-6 text-center text-lg-end">
+                            <!-- Facebook -->
+                            <a
+                                    class="btn btn-primary px-3 mr-1"
+                                    style="background-color: #3b5998;"
+                                    href="#!"
+                                    role="button"
+                            ><i class="fab fa-facebook-f"></i
+                            ></a>
+
+                            <!-- Twitter -->
+                            <a
+                                    class="btn btn-primary px-3 mr-1"
+                                    style="background-color: #55acee;"
+                                    href="#!"
+                                    role="button"
+                            ><i class="fab fa-twitter"></i
+                            ></a>
+
+                            <!-- Google -->
+                            <a
+                                    class="btn btn-primary px-3 mr-1"
+                                    style="background-color: #dd4b39;"
+                                    href="#!"
+                                    role="button"
+                            ><i class="fab fa-google"></i
+                            ></a>
+
+                            <!-- Comments -->
+                            <a type="button" class="btn btn-primary px-3 mr-1">
+                                <i class="fas fa-comments"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <!-- Post Data -->
+                <!-- Post Content -->
+                <section id="content" class="border-bottom mb-4">
+                    <p>
+                    {{ post.body|linebreaksbr }}
+                    </p>
+<!--                    <figure>-->
+<!--                        <blockquote class="blockquote">-->
+<!--                            <p>-->
+<!--                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, nobis.-->
+<!--                            </p>-->
+<!--                        </blockquote>-->
+<!--                        <figcaption class="blockquote-footer">-->
+<!--                            Lorem ipsum dolor.-->
+<!--                            <city title="Source Title">Source Title</city>-->
+<!--                        </figcaption>-->
+<!--                    </figure>-->
+                </section>
+                <!-- Post Content -->
+                <!-- Social Share -->
+                <section id="social" class="border-bottom mb-4 py-4 mb-4 text-center">
+                    <p><strong>Share with your friends:</strong></p>
+                    <button
+                            type="button"
+                            class="btn btn-primary m-1"
+                            style="background-color: #3b5998;"
+                    >
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button
+                            type="button"
+                            class="btn btn-primary m-1"
+                            style="background-color: #55acee;"
+                    >
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                    <button
+                            type="button"
+                            class="btn btn-primary m-1"
+                            style="background-color: #0082ca;"
+                    >
+                        <i class="fab fa-linkedin"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary m-1">
+                        <i class="fas fa-comments me-2"></i>Add comment
+                    </button>
+                </section>
+                <!-- Social Share -->
+                <!-- Author Box -->
+                <section id="author" class="border-bottom mb-4 pb-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img
+                                src="
+                                    {% if post.author.image %}
+                                        {{ post.author.image.url }}
+                                    {% endif %}"
+                                alt="Author avatar"
+                                class="img-fluid shadow-1-strong rounded">
+                        </div>
+                        <div class="col-md-9">
+                            <p class="my-2"><strong>
+                                {{ post.author }}
+                            </strong></p>
+                            <a href="" class="text-dark"
+                            ><i class="fab fa-facebook-f mr-1"></i
+                            ></a>
+                            <a href="" class="text-dark"
+                            ><i class="fab fa-twitter mr-1"></i
+                            ></a>
+                            <a href="" class="text-dark"
+                            ><i class="fab fa-linkedin mr-1"></i
+                            ></a>
+                            <p class="mt-2">
+                                {{ post.author.description }}
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Author Box -->
+                <!-- Comments -->
+                <section id="comments" class="border-bottom mb-4">
+                    <p class="text-center"><strong>Comments: 3</strong></p>
+                    <div class="row mb-4">
+                        <div class="col-2">
+                            <img
+                                src="{% static 'img/c1.jpg' %}"
+                                alt="Author avatar"
+                                class="img-fluid shadow-1-strong rounded">
+                        </div>
+                        <div class="col-10">
+                            <p class="mb-2"><strong>Marta Dolores</strong></p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus
+                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus
+                                neque rem! Rerum, similique, soluta.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-2">
+                            <img
+                                src="{% static 'img/c1.jpg' %}"
+                                alt="Author avatar"
+                                class="img-fluid shadow-1-strong rounded">
+                        </div>
+                        <div class="col-10">
+                            <p class="mb-2"><strong>Marta Dolores</strong></p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus
+                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus
+                                neque rem! Rerum, similique, soluta.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-2">
+                            <img
+                                src="{% static 'img/c1.jpg' %}"
+                                alt="Author avatar"
+                                class="img-fluid shadow-1-strong rounded">
+                        </div>
+                        <div class="col-10">
+                            <p class="mb-2"><strong>Marta Dolores</strong></p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus
+                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus
+                                neque rem! Rerum, similique, soluta.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Comments -->
+                <!-- Reply -->
+                <section id="reply" class="mb-4">
+                    <p class="text-center"><strong>Leave a reply</strong></p>
+                    <form>
+                        <!-- Name input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form4Example1" class="form-control"/>
+                            <label class="form-label" for="form4Example1">Name</label>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="form4Example2" class="form-control"/>
+                            <label class="form-label" for="form4Example2">Email address</label>
+                        </div>
+
+                        <!-- Message input -->
+                        <div class="form-outline mb-4">
+                            <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+                            <label class="form-label" for="form4Example3">Message</label>
+                        </div>
+
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <input
+                                    class="form-check-input me-2"
+                                    type="checkbox"
+                                    value=""
+                                    id="form4Example4"
+                                    checked
+                            />
+                            <label class="form-check-label" for="form4Example4">
+                                Send me a copy of this comment
+                            </label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+                    </form>
+                </section>
+                <!-- Reply -->
+            </div>
+            <div class="col-lg-4 mb-4">
+                <!-- Sidebar -->
+                <section id="sidebar" class="sticky-top" style="top: 80px">
+                    {% for post in similar_posts %}
+                        <div class="bg-image ripple mb-4 rounded shadow-2-strong" data-mdb-ripple-color="success">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/053.webp" class="w-100"/>
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(0, 0, 0, 0.4)">
+                                    <div class="d-flex justify-content-center align-items-center h-100">
+                                        <p class="text-white mb-0">{{ post.title|truncatewords:7 }}</p>
+                                    </div>
+                                </div>
+                                <div class="hover-overlay">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </section>
+                <!-- Sidebar -->
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Main layout -->
+
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+    var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        //[{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        //[{ 'font': [] }],
+        [{ 'align': [] }],
+
+        ['clean'],                                         // remove formatting button
+        ['image']
+    ];
+
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        modules: {
+            toolbar: toolbarOptions
+        },
+    });
+</script>
+{% endblock %}
