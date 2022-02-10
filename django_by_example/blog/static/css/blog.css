@@ -1,0 +1,20 @@
+.text-area-fixed-size {
+  height:123px;
+  min-height:123px;
+  max-height:123px;
+
+  resize: none;
+}
+
+.comments-btn {
+    color: black;
+    padding: 0.5rem;
+}
+
+.btn-approve {
+    color: green;
+}
+
+.btn-delete {
+    color: red;
+}

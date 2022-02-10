@@ -156,76 +156,112 @@
                 <!-- Comments -->
                 <section id="comments" class="border-bottom mb-4">
                     <p class="text-center"><strong>Comments: 3</strong></p>
-                    <div class="row mb-4">
-                        <div class="col-2">
-                            <img
-                                src="{% static 'img/c1.jpg' %}"
-                                alt="Author avatar"
-                                class="img-fluid shadow-1-strong rounded">
+<!--                    <div class="row mb-4">-->
+<!--                        <div class="col-2">-->
+<!--                            <img-->
+<!--                                src="{% static 'img/c1.jpg' %}"-->
+<!--                                alt="Author avatar"-->
+<!--                                class="img-fluid shadow-1-strong rounded">-->
+<!--                        </div>-->
+<!--                        <div class="col-10">-->
+<!--                            <p class="mb-2"><strong>Marta Dolores</strong></p>-->
+<!--                            <p>-->
+<!--                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus-->
+<!--                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus-->
+<!--                                neque rem! Rerum, similique, soluta.-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row mb-4">-->
+<!--                        <div class="col-2">-->
+<!--                            <img-->
+<!--                                src="{% static 'img/c1.jpg' %}"-->
+<!--                                alt="Author avatar"-->
+<!--                                class="img-fluid shadow-1-strong rounded">-->
+<!--                        </div>-->
+<!--                        <div class="col-10">-->
+<!--                            <p class="mb-2"><strong>Marta Dolores</strong></p>-->
+<!--                            <p>-->
+<!--                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus-->
+<!--                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus-->
+<!--                                neque rem! Rerum, similique, soluta.-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row mb-4">-->
+<!--                        <div class="col-2">-->
+<!--                            <img-->
+<!--                                src="{% static 'img/c1.jpg' %}"-->
+<!--                                alt="Author avatar"-->
+<!--                                class="img-fluid shadow-1-strong rounded">-->
+<!--                        </div>-->
+<!--                        <div class="col-10">-->
+<!--                            <p class="mb-2"><strong>Marta Dolores</strong></p>-->
+<!--                            <p>-->
+<!--                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus-->
+<!--                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus-->
+<!--                                neque rem! Rerum, similique, soluta.-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    {% for comment in comments %}
+                        <div class="row mb-4">
+                            <div class="col-2">
+                                <img
+                                    src="{% static 'img/c1.jpg' %}"
+                                    alt="Author avatar"
+                                    class="img-fluid shadow-1-strong rounded">
+                            </div>
+                            <div class="col-10">
+                                <p class="mb-2">
+                                    <strong>{{ comment.name }}</strong>
+                                    {% if not comment.active %}
+                                        <a class="comments-btn btn-approve" href="
+                                        {% url 'blog:comment_approve' pk=comment.pk %}">
+                                            <i class="fas fa-check fa-sm"></i></a>
+                                        <a class="comments-btn btn-delete" href="
+                                            {% url 'blog:comment_delete' pk=comment.pk %}">
+                                            <i class="fas fa-trash fa-sm"></i></a>
+                                    {% endif %}
+                                </p>
+                                <p>{{ comment.body }}</p>
+                            </div>
                         </div>
-                        <div class="col-10">
-                            <p class="mb-2"><strong>Marta Dolores</strong></p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus
-                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus
-                                neque rem! Rerum, similique, soluta.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-2">
-                            <img
-                                src="{% static 'img/c1.jpg' %}"
-                                alt="Author avatar"
-                                class="img-fluid shadow-1-strong rounded">
-                        </div>
-                        <div class="col-10">
-                            <p class="mb-2"><strong>Marta Dolores</strong></p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus
-                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus
-                                neque rem! Rerum, similique, soluta.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-2">
-                            <img
-                                src="{% static 'img/c1.jpg' %}"
-                                alt="Author avatar"
-                                class="img-fluid shadow-1-strong rounded">
-                        </div>
-                        <div class="col-10">
-                            <p class="mb-2"><strong>Marta Dolores</strong></p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias beatae minus
-                                molestiae odio porro, soluta sunt ut? Cum dolor dolores, dolorum eius magnam necessitatibus
-                                neque rem! Rerum, similique, soluta.
-                            </p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </section>
                 <!-- Comments -->
                 <!-- Reply -->
                 <section id="reply" class="mb-4">
                     <p class="text-center"><strong>Leave a reply</strong></p>
-                    <form>
+                    <div class="row">
+                    <div class="col-2 mb-2">
+                        <img
+                            src="{% static 'img/c1.jpg' %}"
+                            alt="Author avatar"
+                            class="img-fluid shadow-1-strong rounded">
+                    </div>
+                    <div class="col-10">
+                    <form method="post">
+                        {% csrf_token %}
                         <!-- Name input -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="form4Example1" class="form-control"/>
-                            <label class="form-label" for="form4Example1">Name</label>
-                        </div>
+<!--                        <div class="form-outline mb-4">-->
+<!--                            <input type="text" id="form4Example1" class="form-control"/>-->
+<!--                            <label class="form-label" for="form4Example1">Name</label>-->
+<!--                        </div>-->
 
                         <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="form4Example2" class="form-control"/>
-                            <label class="form-label" for="form4Example2">Email address</label>
-                        </div>
+<!--                        <div class="form-outline mb-4">-->
+<!--                            <input type="email" id="form4Example2" class="form-control"/>-->
+<!--                            <label class="form-label" for="form4Example2">Email address</label>-->
+<!--                        </div>-->
 
                         <!-- Message input -->
                         <div class="form-outline mb-4">
-                            <textarea class="form-control" id="form4Example3" rows="4"></textarea>
-                            <label class="form-label" for="form4Example3">Message</label>
+<!--                            <textarea class="form-control" id="form4Example3" rows="4"></textarea>-->
+<!--                            <label class="form-label" for="form4Example3">Message</label>-->
+                            {{ comment_form.body }}
+                            <label class="form-label" for="{{ comment_form.body.id_for_label }}">Message</label>
                         </div>
 
                         <!-- Checkbox -->
@@ -245,6 +281,7 @@
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
                     </form>
+                    </div>
                 </section>
                 <!-- Reply -->
             </div>
