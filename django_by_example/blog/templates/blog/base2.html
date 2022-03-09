@@ -40,7 +40,7 @@
             <div class="col-9 collapse navbar-collapse" id="navbarExample01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" aria-current="page" href="#">
+                        <a class="nav-link" aria-current="page" href="/">
                             <img
                                     src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
                                     height="16"
@@ -59,6 +59,14 @@
                     </li>
                 </ul>
             </div>
+            <!--  User panel  -->
+            <div class="mx-3 align-items-center d-flex">
+                <a href="{% url 'user:login' %}">
+                    <i class="fas fa-sign-in-alt fa-lg"></i>
+                </a>
+            </div>
+            <!--  User panel  -->
+            <!--  Search  -->
             <div class="col-3 row rounded">
 <!--                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"-->
 <!--                       aria-describedby="search-addon"/>-->
@@ -66,13 +74,14 @@
 <!--                    {{ form.as_p }}-->
                     <input type="search" name="query" class="form-control rounded" placeholder="Search" aria-label="Search"
                        aria-describedby="search-addon"/>
-                    <label for="search" class="ps-1 d-flex align-items-center"><i class="fas fa-search fa-sm"></i></label>
+                    <label for="search" class="ps-1 d-flex align-items-center"><i class="fas fa-search fa-lg"></i></label>
                     <input id="search" type="submit" class="collapse" value="Search"/>
                 </form>
 <!--                <span class="input-group-text border-0" id="search-addon">-->
 <!--                    <i class="fas fa-search"></i>-->
 <!--                </span>-->
             </div>
+            <!--  Search  -->
         </div>
     </nav>
     <!-- Navbar -->
@@ -99,7 +108,7 @@
     <!-- Background image -->
 </header>
 
-<main class="my-4">
+<main class="my-4 container main-container">
     {% block content %}
     <!-- Posts -->
     <section id="posts" class="text-center mb-4">
@@ -256,7 +265,7 @@
     {% endblock %}
 </main>
 <!-- Footer -->
-<footer class="bg-light text-center text-lg-left">
+<footer class="bg-light text-center text-lg-left page-footer">
     <!-- Grid container -->
     <div class="container p-4">
         <!--Grid row-->
