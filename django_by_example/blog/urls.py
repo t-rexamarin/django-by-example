@@ -8,9 +8,10 @@ from .feeds import LatestPostsFeed
 app_name = 'blog'
 
 urlpatterns = [
-    path('', views.PostListView.get_context_data, name='post_list'),
+    path('', views.PostListView.as_view(), name='post_list'),
+    path('parallax/', views.ParallaxTemplateView.as_view(), name='parallax'),
     # path('page/<int:page>/', views.post_list, name='page'),
-    path('page/<int:page>/', views.PostListView.get_context_data, name='page'),
+    path('page/<int:page>/', views.PostListView.as_view(), name='page'),
     path('tag/<slug:tag_slug>/', views.PostListView.get_context_data, name='post_list_by_tag'),
     # path('', views.PostListView.as_view(), name='post_list'),
     # path('<int:year>/<int:month>/<int:day>/<slug:post>/', views.post_detail, name='post_detail'),

@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView, TemplateView
 from django.core.mail import send_mail
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank, TrigramSimilarity
 from .forms import EmailPostForm, CommentForm, SearchForm
@@ -12,8 +12,16 @@ from django.db.models import Count
 
 
 # Create your views here.
+class ParallaxTemplateView(TemplateView):
+    template_name = 'blog/parallax.html'
+
+
 class PostListView(ListView):
     template_name = 'blog/post/list2.html'
+
+    def get_queryset(self):
+        query_set = Post.published.all()
+        return query_set
 
     def get_context_data(self, *args, **kwargs):
         object_list = Post.published.all()
@@ -25,7 +33,7 @@ class PostListView(ListView):
             object_list = object_list.filter(tags__in=[tag])
 
         paginator = Paginator(object_list, 2)  # 3 posts per page
-        page = kwargs['page'] if 'page' in kwargs else 1
+        page = self.kwargs['page'] if 'page' in self.kwargs else 1
 
         try:
             posts = paginator.page(page)
@@ -41,7 +49,8 @@ class PostListView(ListView):
             'tag': tag
         }
 
-        return render(self, 'blog/post/list2.html', context=context)
+        # return render(self.request, 'blog/post/list2.html', context=context)
+        return context
 
 
 def post_list(request, page=1, tag_slug=None):
@@ -70,7 +79,7 @@ def post_list(request, page=1, tag_slug=None):
         'tag': tag
     }
 
-    return render(request, 'blog/post/list2.html', context)
+    return render(request, 'post/list2.html', context)
 
 
 class PostDetailView(DetailView):
@@ -209,6 +218,8 @@ def post_share(request, post_id):
 
 
 def post_search(request, page=1):
+    # TODO:
+    # старое?
     form = SearchForm()
     query = None
     results = []
