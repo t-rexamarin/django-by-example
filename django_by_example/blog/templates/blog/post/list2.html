@@ -34,9 +34,7 @@
                     <p>
                         {{ post.text|linebreaksbr|slice:'200' }}...
                     </p>
-                    <button type="button" class="btn btn-info btn-rounded">
-                        Read more
-                    </button>
+                    <a class="btn btn-info btn-rounded" href="{{ post.get_absolute_url }}">Read more</a>
                 </div>
                 {% endfor %}
             </div>
