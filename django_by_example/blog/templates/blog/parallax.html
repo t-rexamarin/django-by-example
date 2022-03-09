@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}"/>
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div style="width:1920px; height:1080px" class="parallax-div d-flex justify-content-center">
+        <div id="scene" data-relative-input="false" class="">
+            <div data-depth="0.10" class="d-flex" style="position:fixed; display:block; background-image:
+          url('/static/img/light-orange.png'); width:400px; height:400px">My first Layer!</div>
+            <div data-depth="5" class="d-flex" style="position:relative; display:block; background-image:
+          url('/static/img/light-purple.png'); width:400px; height:400px">My second Layer!</div>
+            <div data-depth="10" class="d-flex" style="position:relative; display:block; background-image:
+          url('/static/img/lighthouse.png'); width:320px; height:560px">My third Layer!</div>
+        </div>
+</div>
+
+</div>
+
+<script>
+    var scene = document.getElementById('scene');
+    var parallaxInstance = new Parallax(scene);
+</script>
+</body>
+</html>
